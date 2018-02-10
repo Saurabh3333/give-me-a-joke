@@ -25,7 +25,7 @@ giveMeAJoke.getRandomCNJoke (function(joke) {
 // To get a customized joke
 var fn = "Jackie";
 var ln = "Chan";
-giveMeAJoke.getCustomJoke (function(joke) {
+giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
     //=> console.log(joke);
 });
 ```
