@@ -1,4 +1,6 @@
 # give-me-a-joke
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Saurabh3333/give-me-a-joke.svg)](https://greenkeeper.io/)
 > A npm-module for random and customized jokes.
 
 ## Install
