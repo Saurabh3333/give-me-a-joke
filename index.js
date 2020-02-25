@@ -1,41 +1,43 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var request = require('request');
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
 
-var app = express();
-app.use(bodyParser());
+const app = express();
+//app.use(bodyParser());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 exports.getRandomCNJoke = function (joke) {
     request('http://api.icndb.com/jokes/random?limitTo=[nerdy]', function (error, response, body) {
         if(!error && response.statusCode === 200) {
-            var dataJSON = JSON.parse(body);  
+            const dataJSON = JSON.parse(body);
             joke(dataJSON.value.joke);
         }
-    });    
+    });
 }
 
 exports.getCustomJoke = function (firstName, lastName, joke) {
-    var fn = firstName;
-    var ln = lastName;
+    const fn = firstName;
+    const ln = lastName;
     request('http://api.icndb.com/jokes/random?firstName=' + fn + '&lastName=' + ln + "&limitTo=[nerdy]", function (error, response, body) {
         if(!error && response.statusCode === 200) {
-            var dataJSON = JSON.parse(body);  
+            const dataJSON = JSON.parse(body);
             joke(dataJSON.value.joke);
         }
     });
 }
 
 exports.getRandomDadJoke = function (joke) {
-    var options = {
+    const options = {
         url: 'https://icanhazdadjoke.com/',
         headers: {
-          'Accept': 'application/json'
+            'Accept': 'application/json'
         }
-      };
+    };
     request(options, function (error, response, body) {
         if(!error && response.statusCode === 200) {
-            var dataJSON = JSON.parse(body);
+            const dataJSON = JSON.parse(body);
             joke(dataJSON.joke);
         }
-    });   
+    });
 }

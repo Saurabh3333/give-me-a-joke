@@ -23,8 +23,8 @@ giveMeAJoke.getRandomCNJoke (function(joke) {
 });
 
 // To get a customized joke
-var fn = "Jackie";
-var ln = "Chan";
+const fn = "Jim";
+const ln = "Carrey";
 giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
     //=> console.log(joke);
 });
