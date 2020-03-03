@@ -38,4 +38,4 @@ on the dashboard, please do feel free to create new ones!
 
 ## License
 
-MIT © [Saurabh Shubham](http://saurabhshubham.com)
+MIT © [Saurabh Shubham](https://saurabh3333.github.io/)
