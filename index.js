@@ -2,10 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 
-const app = express();
-//app.use(bodyParser());
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+var app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.getRandomCNJoke = function (joke) {
     request('http://api.icndb.com/jokes/random?limitTo=[nerdy]', function (error, response, body) {
