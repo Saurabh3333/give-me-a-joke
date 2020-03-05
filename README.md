@@ -29,6 +29,21 @@ giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
     //=> console.log(joke);
 });
 ```
+# Discord Bot Usage
+Now if you guys wondering can i use this package in my Discord Bot? Yes, Yes.. You can, Here's an Quick example to show you.
+```js
+// Exporting the Module
+const giveMeAJoke = require("give-me-a-joke");
+
+// Regular Message Event
+client.on("message", message => {
+    if (message.conetnt === "joke") {
+        giveMeAJoke.getRandomDadJoke (function(joke) {
+      message.channel.send(joke);
+    });
+    }
+});
+```
 
 ## Contributing
 
