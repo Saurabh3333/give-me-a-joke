@@ -30,6 +30,7 @@ giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
 });
 
 // To get a random Joke of the Day (Categories allowed: "blonde", "knock-knock", "animal", "jod")
+var category = "blonde";
 giveMeAJoke.getRandomJokeOfTheDay (category, function(joke) {
     //=> console.log(joke);
 });
