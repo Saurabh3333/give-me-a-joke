@@ -1,6 +1,6 @@
 {
   "name": "give-me-a-joke",
-  "version": "0.2.5",
+  "version": "0.3.1",
   "description": "A npm-module for random and customized jokes.",
   "main": "index.js",
   "scripts": {
