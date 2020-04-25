@@ -28,6 +28,11 @@ var ln = "Chan";
 giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
     //=> console.log(joke);
 });
+
+// To get a random Joke of the Day (Categories allowed: "blonde", "knock-knock", "animal", "jod")
+giveMeAJoke.getRandomJokeOfTheDay (category, function(joke) {
+    //=> console.log(joke);
+});
 ```
 
 ## Contributing

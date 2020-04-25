@@ -39,3 +39,24 @@ exports.getRandomDadJoke = function (joke) {
         }
     });   
 }
+
+exports.getRandomJokeOfTheDay = function (category, joke) {
+    let query = ''
+    if (category)
+        query += `?category=${category}`
+
+    var options = {
+        url: `https://api.jokes.one/jod${query}`,
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var dataJSON = JSON.parse(body);
+            joke(dataJSON.contents.jokes[0].joke.text);
+        } else {
+            throw error
+        }
+    });
+}
