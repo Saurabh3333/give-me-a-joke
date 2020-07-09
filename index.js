@@ -54,7 +54,7 @@ exports.getRandomJokeOfTheDay = (category, joke) => {
   };
   axios(configJOD)
     .then((response) => {
-      joke(response.contents.jokes[0].joke.text.data.joke);
+      joke(response.data.contents.jokes[0].joke.text);
     })
     .catch((err) => {
       console.log(err);
