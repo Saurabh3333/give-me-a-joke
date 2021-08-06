@@ -1,6 +1,6 @@
 {
   "name": "give-me-a-joke",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A npm-module for random and customized jokes.",
   "main": "index.js",
   "scripts": {
@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/Saurabh3333/give-me-a-joke#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "request": "^2.88.2"
   }
 }

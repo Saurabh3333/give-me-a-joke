@@ -1,4 +1,5 @@
 const axios = require('axios');
+var request = require('request');
 
 exports.getRandomCNJoke = (joke) => {
   axios
@@ -26,21 +27,20 @@ exports.getCustomJoke = (firstName, lastName, joke) => {
     });
 };
 
-exports.getRandomDadJoke = (joke) => {
-  let config = {
-    url: 'https://icanhazdadjoke.com/',
-    headers: {
-      Accept: 'application/json',
-    },
-  };
-  axios(config)
-    .then((response) => {
-      joke(response.data.joke);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+exports.getRandomDadJoke = function (joke) {
+  var options = {
+      url: 'https://icanhazdadjoke.com/',
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+  request(options, function (error, response, body) {
+      if(!error && response.statusCode === 200) {
+          var dataJSON = JSON.parse(body);
+          joke(dataJSON.joke);
+      }
+  });   
+}
 
 exports.getRandomJokeOfTheDay = (category, joke) => {
   let query = '';
