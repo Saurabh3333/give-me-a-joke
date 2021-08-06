@@ -57,6 +57,6 @@ exports.getRandomJokeOfTheDay = (category, joke) => {
       joke(response.data.contents.jokes[0].joke.text);
     })
     .catch((err) => {
-      console.log(err);
+      console.log('Sorry, Free limit Exceeded!');
     });
 };
