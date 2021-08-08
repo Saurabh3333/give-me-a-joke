@@ -1,5 +1,5 @@
 const axios = require('axios');
-var request = require('request');
+const request = require('request');
 
 exports.getRandomCNJoke = (joke) => {
   axios
@@ -13,11 +13,11 @@ exports.getRandomCNJoke = (joke) => {
 };
 
 exports.getCustomJoke = (firstName, lastName, joke) => {
-  let fn = firstName;
-  let ln = lastName;
+  const fn = firstName;
+  const ln = lastName;
   axios
     .get(
-      `http://api.icndb.com/jokes/random?firstName=${fn}&lastName=${ln}&limitTo=[nerdy]`,
+      `http://api.icndb.com/jokes/random?firstName=${fn}&lastName=${ln}&limitTo=[nerdy]`
     )
     .then((response) => {
       joke(response.data.value.joke);
@@ -28,25 +28,25 @@ exports.getCustomJoke = (firstName, lastName, joke) => {
 };
 
 exports.getRandomDadJoke = function (joke) {
-  var options = {
-      url: 'https://icanhazdadjoke.com/',
-      headers: {
-        'Accept': 'application/json'
-      }
-    };
-  request(options, function (error, response, body) {
-      if(!error && response.statusCode === 200) {
-          var dataJSON = JSON.parse(body);
-          joke(dataJSON.joke);
-      }
-  });   
-}
+  const options = {
+    url: 'https://icanhazdadjoke.com/',
+    headers: {
+      Accept: 'application/json',
+    },
+  };
+  request(options, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      const dataJSON = JSON.parse(body);
+      joke(dataJSON.joke);
+    }
+  });
+};
 
 exports.getRandomJokeOfTheDay = (category, joke) => {
   let query = '';
   if (category) query += `?category=${category}`;
 
-  let configJOD = {
+  const configJOD = {
     url: `https://api.jokes.one/jod${query}`,
     headers: {
       'Content-type': 'application/json',
