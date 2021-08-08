@@ -1,62 +1,56 @@
 const axios = require('axios');
-var request = require('request');
+const request = require('request');
 
-exports.getRandomCNJoke = (joke) => {
-  axios
-    .get('http://api.icndb.com/jokes/random?limitTo=[nerdy]')
-    .then((response) => {
-      joke(response.data.value.joke);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const getRandomCNJoke = async (callback) => {
+  const url = 'http://api.icndb.com/jokes/random?limitTo=[nerdy]';
+  const response = await axios.get(url);
+  callback(response.data.value.joke);
 };
 
-exports.getCustomJoke = (firstName, lastName, joke) => {
-  let fn = firstName;
-  let ln = lastName;
-  axios
-    .get(
-      `http://api.icndb.com/jokes/random?firstName=${fn}&lastName=${ln}&limitTo=[nerdy]`,
-    )
-    .then((response) => {
-      joke(response.data.value.joke);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const getCustomJoke = async (firstName, lastName, callback) => {
+  const url = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[nerdy]`;
+  try {
+    const response = await axios.get(url);
+    callback(response.data.value.joke);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-exports.getRandomDadJoke = function (joke) {
-  var options = {
-      url: 'https://icanhazdadjoke.com/',
-      headers: {
-        'Accept': 'application/json'
-      }
-    };
-  request(options, function (error, response, body) {
-      if(!error && response.statusCode === 200) {
-          var dataJSON = JSON.parse(body);
-          joke(dataJSON.joke);
-      }
-  });   
-}
+const getRandomDadJoke = (joke) => {
+  const options = {
+    url: 'https://icanhazdadjoke.com/',
+    headers: {
+      Accept: 'application/json',
+    },
+  };
+  request(options, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      const dataJSON = JSON.parse(body);
+      joke(dataJSON.joke);
+    }
+  });
+};
 
-exports.getRandomJokeOfTheDay = (category, joke) => {
+const getRandomJokeOfTheDay = async (category, callback) => {
   let query = '';
   if (category) query += `?category=${category}`;
-
-  let configJOD = {
-    url: `https://api.jokes.one/jod${query}`,
+  const url = `https://api.jokes.one/jod${query}`;
+  const config = {
     headers: {
       'Content-type': 'application/json',
     },
   };
-  axios(configJOD)
-    .then((response) => {
-      joke(response.data.contents.jokes[0].joke.text);
-    })
-    .catch((err) => {
-      console.log('Sorry, Free limit Exceeded!');
-    });
+  try {
+    const response = await axios.get(url, config);
+    callback(response.data.contents.jokes[0].joke.text);
+  } catch (error) {
+    console.log('Sorry, Free limit Exceeded!');
+    console.log(error);
+  }
 };
+
+exports.getRandomDadJoke = getRandomDadJoke;
+exports.getRandomCNJoke = getRandomCNJoke;
+exports.getCustomJoke = getCustomJoke;
+exports.getRandomJokeOfTheDay = getRandomJokeOfTheDay;
