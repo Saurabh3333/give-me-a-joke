@@ -1,4 +1,5 @@
 # give-me-a-joke
+
 > A npm-module for random and customized jokes.
 
 ## Install
@@ -10,30 +11,30 @@ $ npm install --save give-me-a-joke
 ## Usage
 
 ```js
-var giveMeAJoke = require('give-me-a-joke');
+const giveMeAJoke = require('give-me-a-joke');
 
 // To get a random dad joke
-giveMeAJoke.getRandomDadJoke (function(joke) {
-    //=> console.log(joke);
+giveMeAJoke.getRandomDadJoke((joke) => {
+  //=> console.log(joke);
 });
 
 // To get a random Chuck Norris joke
-giveMeAJoke.getRandomCNJoke (function(joke) {
-    //=> console.log(joke);
+giveMeAJoke.getRandomCNJoke((joke) => {
+  //=> console.log(joke);
 });
 
 // To get a customized joke
-var fn = "Jackie";
-var ln = "Chan";
-giveMeAJoke.getCustomJoke (fn, ln, function(joke) {
-    //=> console.log(joke);
+const fn = 'Jackie';
+const ln = 'Chan';
+giveMeAJoke.getCustomJoke(fn, ln, (joke) => {
+  //=> console.log(joke);
 });
 
 // To get a random Joke of the Day (Categories allowed: "blonde", "knock-knock", "animal", "jod")
-var category = "blonde";
-giveMeAJoke.getRandomJokeOfTheDay (category, function(joke) {
-     // NOTE: The service provider has made the restriction of 5 calls an hour for RandomJokeOfTheDay
-    //=> console.log(joke);
+const category = 'blonde';
+giveMeAJoke.getRandomJokeOfTheDay(category, (joke) => {
+  // NOTE: The service provider has made the restriction of 5 calls an hour for RandomJokeOfTheDay
+  //=> console.log(joke);
 });
 ```
 
