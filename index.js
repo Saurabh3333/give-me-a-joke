@@ -3,9 +3,9 @@ const request = require('request');
 
 exports.getRandomCNJoke = (joke) => {
   axios
-    .get('http://api.icndb.com/jokes/random?limitTo=[nerdy]')
+    .get('https://api.chucknorris.io/jokes/random')
     .then((response) => {
-      joke(response.data.value.joke);
+      joke(response.data.value);
     })
     .catch((err) => {
       console.log(err);
@@ -16,9 +16,7 @@ exports.getCustomJoke = (firstName, lastName, joke) => {
   const fn = firstName;
   const ln = lastName;
   axios
-    .get(
-      `http://api.icndb.com/jokes/random?firstName=${fn}&lastName=${ln}&limitTo=[nerdy]`
-    )
+    .get(`http://api.icndb.com/jokes/random?firstName=${fn}&lastName=${ln}&limitTo=[nerdy]`)
     .then((response) => {
       joke(response.data.value.joke);
     })
